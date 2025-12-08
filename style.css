@@ -2,8 +2,8 @@
   --bg: #ffffff;
   --text: #111111;
   --muted: #666666;
-  --accent: #f4c430; /* warm mustard (still your accent color) */
-  --accent-2: #fff4cc; /* light accent wash */
+  --accent: #f4c430; /* warm mustard */
+  --accent-2: #fff4cc;
   --border: #eaeaea;
   --link: #0b57d0;
   --maxw: 980px;
@@ -82,7 +82,6 @@ nav ul{
 nav a{
   color:var(--text);
   font-weight:600;
-  text-decoration:none;
 }
 
 /* ACTIVE LINK */
@@ -96,19 +95,26 @@ nav a:hover{
   color:var(--accent) !important;
 }
 
-/* HERO (FULL PEACOCK) */
+/* HERO — Peacock Gradient */
 .hero{
-  background:#006D77;        /* solid peacock */
-  padding:48px 0 22px;
+  background: linear-gradient(
+    180deg,
+    #006D77 0%, 
+    #83C5BE 60%, 
+    #ffffff 100%
+  );
+  padding:48px 0 40px;
   border-bottom:1px solid var(--border);
-  color:#ffffff;             /* hero text color */
+  color:#ffffff;
 }
 
+/* ensure hero layout doesn't show white behind image */
 .hero-grid{
   display:grid;
   grid-template-columns:1.2fr .8fr;
   gap:28px;
   align-items:center;
+  background:transparent;
 }
 
 .kicker{
@@ -125,14 +131,15 @@ h1{
   margin:8px 0 12px;
 }
 
-/* Default subtitle is gray, but hero version is mint-white */
+/* subtitle default */
 .subtitle{
   color:var(--muted);
   font-size:18px;
 }
 
+/* subtitle inside hero */
 .hero .subtitle{
-  color:#d9f3f3 !important; /* mint-white override */
+  color:#e8f7f7 !important;
 }
 
 /* BUTTONS */
@@ -210,7 +217,7 @@ h1{
   font-weight:700;
 }
 
-/* FEATURES */
+/* FEATURE BLOCK */
 .feature{
   display:flex;
   gap:16px;
@@ -290,8 +297,16 @@ footer{
 
 /* RESPONSIVE */
 @media (max-width:900px){
-  .hero-grid{grid-template-columns:1fr;}
-  .grid-3{grid-template-columns:1fr;}
-  .grid-2{grid-template-columns:1fr;}
-  h1{font-size:34px;}
+  .hero-grid{
+    grid-template-columns:1fr;
+  }
+  .grid-3{
+    grid-template-columns:1fr;
+  }
+  .grid-2{
+    grid-template-columns:1fr;
+  }
+  h1{
+    font-size:34px;
+  }
 }
