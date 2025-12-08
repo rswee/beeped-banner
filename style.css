@@ -25,14 +25,27 @@ header{
 .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:700}
 .brand .logo{font-size:22px}
-nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
-nav a{color:var(--text);font-weight:/* ACTIVE LINK — Bold yellow */
-nav a.active {
-  color: var(--accent) !important;
-  font-weight: 800;
+nav ul{
+  display:flex;
+  gap:18px;
+  list-style:none;
+  margin:0;
+  padding:0;
 }
 
-/* Hover link */
+nav a {
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ACTIVE LINK — Bold yellow */
+nav a.active {
+  color: var(--accent) !important;
+  font-weight: 800 !important;
+}
+
+/* Hover effect */
 nav a:hover {
   color: var(--accent) !important;
 }
