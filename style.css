@@ -26,8 +26,16 @@ header{
 .brand{display:flex;align-items:center;gap:10px;font-weight:700}
 .brand .logo{font-size:22px}
 nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
-nav a{color:var(--text);font-weight:600}
-nav a.active, nav a:hover{color:#000}
+nav a{color:var(--text);font-weight:/* ACTIVE LINK — Bold yellow */
+nav a.active {
+  color: var(--accent) !important;
+  font-weight: 800;
+}
+
+/* Hover link */
+nav a:hover {
+  color: var(--accent) !important;
+}
 
 .hero{
   background:linear-gradient(180deg, var(--accent-2), #fff);
