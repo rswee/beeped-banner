@@ -297,6 +297,21 @@ footer{
   flex-wrap:wrap;
 }
 
+.gallery-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.gallery-img {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+
 /* RESPONSIVE */
 @media (max-width:900px){
   .hero-grid{
