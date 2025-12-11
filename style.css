@@ -148,7 +148,7 @@ h1{
 
 /* subtitle default */
 .subtitle{
-  color:var(--muted);
+  color: #ff2f92;
   font-size:18px;
 }
 
