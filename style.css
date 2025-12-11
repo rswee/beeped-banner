@@ -146,7 +146,7 @@ h1{
   margin:8px 0 12px;
 }
 
-/* ⭐ ROUNDED SUBTITLE PILL */
+/* ⭐ ROUNDED SUBTITLE PILL (normal pages) */
 .subtitle{
   display:inline-block;
   background:var(--accent-2);
@@ -158,10 +158,10 @@ h1{
   margin-top:6px;
 }
 
-/* subtitle inside hero */
+/* ⭐ Subtitle inside hero (white text only inside hero) */
 .hero .subtitle{
   background:rgba(255,255,255,0.25);
-  color:#ffffff !important;
+  color:#ffffff;
 }
 
 /* BUTTONS */
@@ -318,7 +318,7 @@ footer{
   flex-wrap:wrap;
 }
 
-
+/* RESPONSIVE */
 @media (max-width:900px){
   .hero-grid{
     grid-template-columns:1fr;
