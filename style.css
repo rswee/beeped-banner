@@ -146,15 +146,22 @@ h1{
   margin:8px 0 12px;
 }
 
-/* subtitle default */
+/* ⭐ ROUNDED SUBTITLE PILL */
 .subtitle{
-  color: #ff2f92;
-  font-size:18px;
+  display:inline-block;
+  background:var(--accent-2);
+  color:#555;
+  padding:6px 14px;
+  border-radius:999px;
+  font-size:16px;
+  font-weight:600;
+  margin-top:6px;
 }
 
 /* subtitle inside hero */
 .hero .subtitle{
-  color:#e8f7f7 !important;
+  background:rgba(255,255,255,0.25);
+  color:#ffffff !important;
 }
 
 /* BUTTONS */
@@ -304,7 +311,6 @@ footer{
   background:#fff;
   margin:4px 6px 0 0;
   color:#005577;
-
 }
 
 .chips{
@@ -312,7 +318,7 @@ footer{
   flex-wrap:wrap;
 }
 
-/* RESPONSIVE */
+
 @media (max-width:900px){
   .hero-grid{
     grid-template-columns:1fr;
