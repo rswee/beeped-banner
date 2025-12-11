@@ -146,11 +146,10 @@ h1{
   margin:8px 0 12px;
 }
 
-/* ⭐ ROUNDED SUBTITLE PILL (normal pages) */
-.subtitle{
+.subtitle {
   display:inline-block;
   background:var(--accent-2);
-  color:#555;
+  color:red;
   padding:6px 14px;
   border-radius:999px;
   font-size:16px;
@@ -158,10 +157,9 @@ h1{
   margin-top:6px;
 }
 
-/* ⭐ Subtitle inside hero (white text only inside hero) */
-.hero .subtitle{
-  background:rgba(255,255,255,0.25);
-  color:#ffffff;
+.hero .subtitle {
+  background: rgba(255,255,255,0.25); 
+  color: red !important; 
 }
 
 /* BUTTONS */
