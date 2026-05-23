@@ -322,6 +322,15 @@ footer{
   flex-wrap:wrap;
 }
 
+.center-single {
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.center-single .card {
+  max-width: 450px;
+  width: 100%;
+}
 /* RESPONSIVE */
 @media (max-width:900px){
   .hero-grid{
