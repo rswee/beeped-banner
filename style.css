@@ -225,6 +225,11 @@ h1{
   gap:20px;
 }
 
+.grid-2 .card {
+  max-width: 450px;
+  justify-self: center;
+}
+
 /* BADGE */
 .badge{
   display:inline-block;
