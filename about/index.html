@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>About Beepad</title>
-  <meta name="description" content="About Beepad — who I am, what I do, and why I write.">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="About Beepad who I am, what I do, and why I write.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/style.css">
   <link rel="icon" href="/assets/favicon.png">
 </head>
@@ -28,29 +28,33 @@
   </div>
 </header>
 
+<section class="hero" style="padding:40px 0 22px;">
+  <div class="container">
+    <h1>About Me</h1>
+    <p class="subtitle">Who I am, what I do, and what I love</p>
+  </div>
+</section>
+
 <main class="section">
+
   <div class="container">
 
-    <h1>About Me</h1>
-
+    <!-- ⭐ 2-column About Section -->
     <div class="grid-2">
 
-      <!-- Left column: profile photo -->
       <div class="card">
-        <img src="/assets/me.jpg" alt="Photo of Rekha" style="border-radius:12px">
+        <img src="/assets/me.jpg" alt="Photo of Rekha" style="border-radius:12px; width:100%;">
       </div>
 
-      <!-- Right column: bio + photos -->
-      <div>
-
+      <div class="about-content">
         <p>
-          Hi, I’m Rekha. Beepad is my digital notebook — a place where I turn complex topics into simple explanations.
-          I write about Python, DevOps, AWS, and Kubernetes, and I share small projects I build along the way.
+          Hi, I’m Rekha. Beepad is my digital notebook a place where I turn complex topics into simple explanations.
+          I write about Python, DevOps, AWS, and Kubernetes, and I share the small projects I build along the way.
         </p>
 
         <p>
-          I like documenting things clearly so I (and others) can revisit and learn faster. When I’m not writing notes,
-          I’m experimenting, reading docs, and organizing what I learn.
+          I enjoy documenting things clearly so I (and others) can revisit concepts and learn faster.
+          When I’m not writing notes, I’m experimenting, reading docs, and organizing what I learn.
         </p>
 
         <h2>What I Do</h2>
@@ -63,23 +67,26 @@
           <span class="tag">Automation</span>
          
         </div>
-
-        <h2 style="margin-top:24px">Outside of Work</h2>
-        <p>
-          I enjoy photography (mostly scenes and nature), writing, Crochet and building small web projects.
-        </p>
-
-        <!-- CLEAN NEW PHOTO GRID -->
-        <div class="gallery-grid">
-          <img src="/assets/nayagae.jpg" alt="Nayagae Street" class="gallery-img">
-          <img src="/assets/park.jpg" alt="Photo 2" class="gallery-img">
-          <img src="/assets/water.jpg" alt="Photo 3" class="gallery-img">
-        </div>
-
       </div>
 
+    </div> 
+
+  </div> 
+
+
+  <section class="section" style="margin-top:40px;">
+    <div class="container">
+      <h2>Outside of Work</h2>
+      <p>I enjoy photography (mostly scenes and nature), writing, and building small web projects.</p>
+
+      <div class="gallery-grid">
+        <img src="/assets/nayagae.jpg" alt="Street scene" class="gallery-img">
+        <img src="/assets/park.jpg" alt="Park photo" class="gallery-img">
+        <img src="/assets/water.jpg" alt="Water scene" class="gallery-img">
+      </div>
     </div>
-  </div>
+  </section>
+
 </main>
 
 <footer>
@@ -88,11 +95,3 @@
     <div class="footer-links">
       <a href="/about/">About</a>
       <a href="/projects/">My Work</a>
-      <a href="/contact/">Contact</a>
-      <a href="/privacy/">Privacy</a>
-    </div>
-  </div>
-</footer>
-
-</body>
-</html>

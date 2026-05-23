@@ -146,15 +146,20 @@ h1{
   margin:8px 0 12px;
 }
 
-/* subtitle default */
-.subtitle{
-  color:var(--muted);
-  font-size:18px;
+.subtitle {
+  display:inline-block;
+  background:var(--accent-2);
+  color:red;
+  padding:6px 14px;
+  border-radius:999px;
+  font-size:16px;
+  font-weight:600;
+  margin-top:6px;
 }
 
-/* subtitle inside hero */
-.hero .subtitle{
-  color:#e8f7f7 !important;
+.hero .subtitle {
+  background: rgba(255,255,255,0.25); 
+  color: green !important; 
 }
 
 /* BUTTONS */
@@ -304,7 +309,6 @@ footer{
   background:#fff;
   margin:4px 6px 0 0;
   color:#005577;
-
 }
 
 .chips{
