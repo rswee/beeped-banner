@@ -14,7 +14,7 @@
 
   <meta
     name="viewport"
-    content="width=device-width,initial-scale=1"
+    content="width=device-width, initial-scale=1"
   >
 
   <link rel="stylesheet" href="/style.css">
@@ -34,11 +34,9 @@
     <div class="container nav">
 
       <div class="brand">
-
         <span class="logo">🐝</span>
 
         <a href="/">Beepad</a>
-
       </div>
 
       <nav>
@@ -118,36 +116,34 @@
 
       </div>
 
-      <!-- COMMENTS CARD -->
+      <!-- COMMENTS -->
 
       <div class="card" style="margin-top:28px;">
 
         <h2 style="margin-bottom:18px;">
-          Comments & Reactions
+          Comments & Messages
         </h2>
 
-        <p class="small" style="margin-bottom:20px;">
+        <p class="small" style="margin-bottom:24px;">
           Feel free to leave a message,
-          reaction, or say hello ✨
+          share thoughts, or say hello ✨
         </p>
 
-        <!-- GISCUS COMMENTS -->
+        <!-- CUSDIS -->
+
+        <div
+          id="cusdis_thread"
+          data-host="https://cusdis.com"
+          data-app-id="d05536bf-3da5-4e97-b332-6eff5f3f63b6"
+          data-page-id="contact-page"
+          data-page-url="https://beepad.site/contact/"
+          data-page-title="Contact • Beepad">
+        </div>
 
         <script
-          src="https://giscus.app/client.js"
-          data-repo="rswee/beeped-banner"
-          data-repo-id="R_kgDOQkgOJQ"
-          data-category="Show and tell"
-          data-category-id="DIC_kwDOQkgOJc4C9tz6"
-          data-mapping="pathname"
-          data-strict="0"
-          data-reactions-enabled="1"
-          data-emit-metadata="0"
-          data-input-position="bottom"
-          data-theme="transparent_dark"
-          data-lang="en"
-          crossorigin="anonymous"
-          async>
+          async
+          defer
+          src="https://cusdis.com/js/cusdis.es.js">
         </script>
 
       </div>
