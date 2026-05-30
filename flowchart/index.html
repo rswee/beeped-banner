@@ -48,7 +48,9 @@
     </div>
   </div>
 </footer>
-<script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+mermaid.initialize({ startOnLoad: false });
 const flowBtn = document.getElementById('renderFlow');
 const flowInput = document.getElementById('flowInput');
 const flowDiv = document.getElementById('flowDiagram');
@@ -59,7 +61,6 @@ if(flowBtn && flowInput && flowDiv) {
       flowDiv.innerHTML = '<div class="small">Please enter a flow (e.g., a to b to c).</div>';
       return;
     }
-    // Parse input like 'a to b to c' into Mermaid flowchart syntax
     const nodes = raw.split(/\s+to\s+/i).map(s => s.trim()).filter(Boolean);
     if (nodes.length < 2) {
       flowDiv.innerHTML = '<div class="small">Enter at least two nodes (e.g., a to b).</div>';
@@ -71,8 +72,7 @@ if(flowBtn && flowInput && flowDiv) {
     }
     flowDiv.innerHTML = '<div class="small">Rendering...</div>';
     try {
-      const { render } = await import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs');
-      const { svg } = await render('flowchart-diagram', mermaidCode);
+      const { svg } = await mermaid.render('flowchart-diagram', mermaidCode);
       flowDiv.innerHTML = svg;
     } catch (e) {
       flowDiv.innerHTML = '<div class="small" style="color:red;">Error: ' + e.message + '</div>';
