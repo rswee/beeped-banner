@@ -172,40 +172,5 @@
   </div>
 </footer>
 
-<script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-<script>
-const flowBtn = document.getElementById('renderFlow');
-const flowInput = document.getElementById('flowInput');
-const flowDiv = document.getElementById('flowDiagram');
-if(flowBtn && flowInput && flowDiv) {
-  flowBtn.onclick = async () => {
-    const raw = flowInput.value.trim();
-    if (!raw) {
-      flowDiv.innerHTML = '<div class="small">Please enter a flow (e.g., a to b to c).</div>';
-      return;
-    }
-    // Parse input like 'a to b to c' into Mermaid flowchart syntax
-    const nodes = raw.split(/\s+to\s+/i).map(s => s.trim()).filter(Boolean);
-    if (nodes.length < 2) {
-      flowDiv.innerHTML = '<div class="small">Enter at least two nodes (e.g., a to b).</div>';
-      return;
-    }
-    let mermaidCode = 'flowchart TD\n';
-    for (let i = 0; i < nodes.length - 1; i++) {
-      mermaidCode += `  ${nodes[i]} --> ${nodes[i+1]}\n`;
-    }
-    flowDiv.innerHTML = '<div class="small">Rendering...</div>';
-    try {
-      const { render } = await import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs');
-      const { svg } = await render('flowchart-diagram', mermaidCode);
-      flowDiv.innerHTML = svg;
-    } catch (e) {
-      flowDiv.innerHTML = '<div class="small" style="color:red;">Error: ' + e.message + '</div>';
-    }
-  };
-}
-</script>
-
 </body>
 </html>
-
