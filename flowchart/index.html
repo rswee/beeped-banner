@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Flowchart Tool • Beepad</title>
+  <meta name="description" content="Create simple flowcharts from text input.">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/assets/favicon.png">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <span class="logo">🐝</span>
+      <a href="/">Beepad</a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/projects/">My Work</a></li>
+        <li><a href="/contact/">Contact</a></li>
+        <li><a class="active" href="/flowchart/">Flowchart Tool</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main class="section" id="flowchart-tool">
+  <div class="container">
+    <h2>Flowchart Tool</h2>
+    <p>Type a simple flow like <code>a to b to c</code> and click Render. A flowchart will be generated below.</p>
+    <textarea id="flowInput" rows="3" style="width:100%;max-width:600px;font-family:monospace;padding:10px;border-radius:8px;border:1px solid #eaeaea;resize:vertical;" placeholder="a to b to c" autofocus></textarea>
+    <br>
+    <button id="renderFlow" style="margin-top:10px;padding:8px 18px;border-radius:8px;font-weight:600;">Render Flowchart</button>
+    <div id="flowDiagram" style="margin-top:24px;"></div>
+  </div>
+</main>
+<footer>
+  <div class="container footer-inner">
+    <div class="small">© 2026 Beepad</div>
+    <div class="footer-links">
+      <a href="/about/">About</a>
+      <a href="/projects/">My Work</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy</a>
+    </div>
+  </div>
+</footer>
+<script>
+const flowBtn = document.getElementById('renderFlow');
+const flowInput = document.getElementById('flowInput');
+const flowDiv = document.getElementById('flowDiagram');
+if(flowBtn && flowInput && flowDiv) {
+  flowBtn.onclick = async () => {
+    const raw = flowInput.value.trim();
+    if (!raw) {
+      flowDiv.innerHTML = '<div class="small">Please enter a flow (e.g., a to b to c).</div>';
+      return;
+    }
+    // Parse input like 'a to b to c' into Mermaid flowchart syntax
+    const nodes = raw.split(/\s+to\s+/i).map(s => s.trim()).filter(Boolean);
+    if (nodes.length < 2) {
+      flowDiv.innerHTML = '<div class="small">Enter at least two nodes (e.g., a to b).</div>';
+      return;
+    }
+    let mermaidCode = 'flowchart TD\n';
+    for (let i = 0; i < nodes.length - 1; i++) {
+      mermaidCode += `  ${nodes[i]} --> ${nodes[i+1]}\n`;
+    }
+    flowDiv.innerHTML = '<div class="small">Rendering...</div>';
+    try {
+      const { render } = await import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs');
+      const { svg } = await render('flowchart-diagram', mermaidCode);
+      flowDiv.innerHTML = svg;
+    } catch (e) {
+      flowDiv.innerHTML = '<div class="small" style="color:red;">Error: ' + e.message + '</div>';
+    }
+  };
+}
+</script>
+</body>
+</html>
