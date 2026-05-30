@@ -16,8 +16,6 @@
   <meta property="og:description" content="Beginner friendly tutorials in DevOps, AWS, and Kubernetes  plus real projects.">
   <meta property="og:image" content="https://beepad.site/assets/hero.jpg">
   <meta name="theme-color" content="#006D77">
-  <!-- Mermaid.js for diagrams -->
-  <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 </head>
 
 <body>
@@ -34,19 +32,16 @@
         <li><a href="about">AboutMe!</a></li>
         <li><a href="projects">My Work</a></li>
         <li><a href="contact">Contact</a></li>
-        <li><a href="kubernetes/">Kubernetes</a></li>
-        <li><a href="aws/">AWS</a></li>
-        <li><a href="terraform/">Terraform</a></li>
-        <li><a href="rabbitmq/">RabbitMQ</a></li>
       </ul>
     </nav>
-    <button id="darkModeToggle" aria-label="Toggle dark mode" style="margin-left:16px;font-size:18px;background:none;border:none;cursor:pointer;">🌙</button>
   </div>
 </header>
 
 <main>
+
   <section class="hero">
     <div class="container hero-grid">
+
       <div>
         <div class="kicker">A space to learn</div>
         <h1>Learn • Build • Remember</h1>
@@ -56,6 +51,9 @@
             plus small projects and experiments.
         </p>
         <p class="subtitle">Beepad is my second brain.</p>
+
+        
+
         <div class="chips" style="margin-top:14px">
           <span class="tag">DevOps</span>
           <span class="tag">AWS</span>
@@ -63,24 +61,23 @@
           <span class="tag">Notes</span>
         </div>
       </div>
+
       <div>
         <img class="hero-img" src="assets/hero.jpg" alt="Notebook, laptop and a warm workspace">
       </div>
-    </div>
-  </section>
 
-  <!-- Site Search Bar -->
-  <section class="section">
-    <div class="container">
-      <input id="searchInput" type="search" placeholder="Search notes, guides, projects..." style="width:100%;max-width:400px;padding:10px 14px;border-radius:8px;border:1px solid #eaeaea;font-size:16px;">
-      <div id="searchResults" style="margin-top:18px;"></div>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
       <h2>What I Do</h2>
+
       <div class="grid-3">
+       
+          
+          
+          
         <div class="card feature">
           <div class="icon"></div>
           <div>
@@ -88,6 +85,7 @@
             <p>Notes on Docker, GitHub Actions, pipelines, deployments, and automation.</p>
           </div>
         </div>
+
         <div class="card feature">
           <div class="icon"></div>
           <div>
@@ -96,6 +94,7 @@
           </div>
         </div>
       </div>
+
       <div class="grid-2" style="margin-top:20px">
         <div class="card feature">
           <div class="icon"></div>
@@ -104,6 +103,7 @@
             <p>Cluster components, nodes, pods, and YAML explained simply.</p>
           </div>
         </div>
+
         <div class="card feature">
           <div class="icon"></div>
           <div>
@@ -113,9 +113,11 @@
         </div>
       </div>
       <div class="card feature">
+      
         <div class="icon">✨</div>
           <div>
             <h3>Life Beyond Tech</h3>
+
             <p>
             Sharing hobbies, crochet creations, photography,
             learning journeys,moments,
@@ -128,6 +130,7 @@
   <section class="section">
     <div class="container">
       <h2>Featured</h2>
+
 <div class="center-single">
   <div class="card">
     <img src="assets/book.jpg" alt="Project cards" style="border-radius:10px;margin-bottom:12px">
@@ -153,27 +156,5 @@
   </div>
 </footer>
 
-<!-- Site Search Script (lunr.js or placeholder) -->
-<script src="search.js"></script>
-<script>
-// Dark mode toggle
-const darkToggle = document.getElementById('darkModeToggle');
-const root = document.documentElement;
-function setDarkMode(on) {
-  if(on) {
-    document.body.classList.add('dark-mode');
-    localStorage.setItem('darkMode', 'on');
-    darkToggle.textContent = '☀️';
-  } else {
-    document.body.classList.remove('dark-mode');
-    localStorage.setItem('darkMode', 'off');
-    darkToggle.textContent = '🌙';
-  }
-}
-darkToggle.onclick = () => setDarkMode(!document.body.classList.contains('dark-mode'));
-if(localStorage.getItem('darkMode') === 'on' || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-  setDarkMode(true);
-}
-</script>
 </body>
 </html>

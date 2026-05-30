@@ -23,13 +23,8 @@
         <li><a class="active" href="/about/">About</a></li>
         <li><a href="/projects/">My Work</a></li>
         <li><a href="/contact/">Contact</a></li>
-        <li><a href="/kubernetes/">Kubernetes</a></li>
-        <li><a href="/aws/">AWS</a></li>
-        <li><a href="/terraform/">Terraform</a></li>
-        <li><a href="/rabbitmq/">RabbitMQ</a></li>
       </ul>
     </nav>
-    <button id="darkModeToggle" aria-label="Toggle dark mode" style="margin-left:16px;font-size:18px;background:none;border:none;cursor:pointer;">🌙</button>
   </div>
 </header>
 
@@ -100,34 +95,3 @@
     <div class="footer-links">
       <a href="/about/">About</a>
       <a href="/projects/">My Work</a>
-      <a href="/contact/">Contact</a>
-      <a href="/kubernetes/">Kubernetes</a>
-      <a href="/aws/">AWS</a>
-      <a href="/terraform/">Terraform</a>
-      <a href="/rabbitmq/">RabbitMQ</a>
-    </div>
-  </div>
-</footer>
-
-<script>
-// Dark mode toggle
-const darkToggle = document.getElementById('darkModeToggle');
-function setDarkMode(on) {
-  if(on) {
-    document.body.classList.add('dark-mode');
-    localStorage.setItem('darkMode', 'on');
-    darkToggle.textContent = '☀️';
-  } else {
-    document.body.classList.remove('dark-mode');
-    localStorage.setItem('darkMode', 'off');
-    darkToggle.textContent = '🌙';
-  }
-}
-darkToggle.onclick = () => setDarkMode(!document.body.classList.contains('dark-mode'));
-if(localStorage.getItem('darkMode') === 'on' || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-  setDarkMode(true);
-}
-</script>
-
-</body>
-</html>
