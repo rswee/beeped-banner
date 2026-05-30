@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bee Wisdom • Beepad</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+  font-family: system-ui, sans-serif;
+  text-align: center;
+  padding: 40px 20px;
+  background: #fffdf8;
+}
+
+.jar {
+  font-size: 120px;
+  cursor: pointer;
+  transition: transform .2s ease;
+  user-select: none;
+}
+
+.jar:hover {
+  transform: scale(1.08) rotate(-5deg);
+}
+
+.message {
+  margin-top: 24px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  font-size: 1.2rem;
+  min-height: 40px;
+  animation: fadeIn .3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+</head>
+<body>
+
+<h1>🐝 Bee Wisdom</h1>
+<p>Click the honey jar and receive a random thought.</p>
+
+<div class="jar" id="jar">🍯</div>
+
+<div class="message" id="message">
+  Your wisdom will appear here...
+</div>
+
+<script>
+const messages = [
+  "Progress beats perfection.",
+  "Start before you're ready.",
+  "Small steps compound into big results.",
+  "Done is better than perfect.",
+  "Future you will thank present you.",
+  "Consistency beats intensity.",
+  "Keep going. You're closer than you think.",
+  "Learn publicly.",
+  "Start messy.",
+  "One page is better than no page.",
+  "You don't need motivation. You need momentum.",
+  "Tiny improvements create massive results.",
+  "Be curious, not judgmental.",
+  "Every expert was once a beginner.",
+  "Action creates clarity.",
+  "Your second brain remembers what your first brain forgets."
+];
+
+const jar = document.getElementById('jar');
+const message = document.getElementById('message');
+
+jar.addEventListener('click', () => {
+  const random =
+    messages[Math.floor(Math.random() * messages.length)];
+
+  message.style.opacity = 0;
+
+  setTimeout(() => {
+    message.textContent = random;
+    message.style.opacity = 1;
+  }, 150);
+
+  jar.animate(
+    [
+      { transform: 'rotate(0deg)' },
+      { transform: 'rotate(-10deg)' },
+      { transform: 'rotate(10deg)' },
+      { transform: 'rotate(0deg)' }
+    ],
+    {
+      duration: 400
+    }
+  );
+});
+</script>
+
+</body>
+</html>
