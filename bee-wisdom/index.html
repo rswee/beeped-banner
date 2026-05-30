@@ -2,111 +2,134 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Bee Wisdom • Beepad</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wisdom Jar</title>
 
 <style>
-body {
-  font-family: system-ui, sans-serif;
-  text-align: center;
-  padding: 40px 20px;
-  background: #fffdf8;
+body{
+    font-family:system-ui,sans-serif;
+    text-align:center;
+    background:#fffdf7;
+    padding:40px 20px;
 }
 
-.jar {
-  font-size: 120px;
-  cursor: pointer;
-  transition: transform .2s ease;
-  user-select: none;
+.jar{
+    font-size:120px;
+    cursor:pointer;
+    user-select:none;
 }
 
-.jar:hover {
-  transform: scale(1.08) rotate(-5deg);
+.shake{
+    animation:shake .5s;
 }
 
-.message {
-  margin-top: 24px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 20px;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,.08);
-  font-size: 1.2rem;
-  min-height: 40px;
-  animation: fadeIn .3s ease;
+@keyframes shake{
+    0%{transform:rotate(0deg);}
+    25%{transform:rotate(-8deg);}
+    50%{transform:rotate(8deg);}
+    75%{transform:rotate(-8deg);}
+    100%{transform:rotate(0deg);}
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.scroll{
+    width:320px;
+    margin:0 auto;
+    background:white;
+    border-radius:12px;
+    box-shadow:0 6px 18px rgba(0,0,0,.1);
+    padding:20px;
+    margin-top:20px;
+
+    opacity:0;
+    transform:translateY(-20px);
+    transition:all .5s ease;
+}
+
+.scroll.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.fortune{
+    font-size:1.15rem;
+    line-height:1.6;
+}
+
+button{
+    margin-top:20px;
+    padding:10px 18px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
 }
 </style>
 </head>
 <body>
 
-<h1>🐝 Bee Wisdom</h1>
-<p>Click the honey jar and receive a random thought.</p>
+<h1>🍯 Wisdom Jar</h1>
+<p>Tap the jar to reveal your fortune.</p>
 
 <div class="jar" id="jar">🍯</div>
 
-<div class="message" id="message">
-  Your wisdom will appear here...
+<div class="scroll" id="scroll">
+    <div class="fortune" id="fortune"></div>
 </div>
 
+<button id="again" style="display:none;">
+✨ Another Fortune
+</button>
+
 <script>
-const messages = [
-  "Progress beats perfection.",
-  "Start before you're ready.",
-  "Small steps compound into big results.",
-  "Done is better than perfect.",
-  "Future you will thank present you.",
-  "Consistency beats intensity.",
-  "Keep going. You're closer than you think.",
-  "Learn publicly.",
-  "Start messy.",
-  "One page is better than no page.",
-  "You don't need motivation. You need momentum.",
-  "Tiny improvements create massive results.",
-  "Be curious, not judgmental.",
-  "Every expert was once a beginner.",
-  "Action creates clarity.",
-  "Your second brain remembers what your first brain forgets."
+const fortunes = [
+    "Progress beats perfection.",
+    "Start before you're ready.",
+    "Action creates clarity.",
+    "Small steps compound into big results.",
+    "Done is better than perfect.",
+    "Future you will thank present you.",
+    "Consistency beats intensity.",
+    "Capture ideas before they disappear.",
+    "Your habits write your future.",
+    "Learn publicly.",
+    "Keep going. You're closer than you think.",
+    "The perfect time rarely arrives.",
+    "A tiny improvement today compounds tomorrow.",
+    "Curiosity is a superpower.",
+    "Write it down before it vanishes."
 ];
 
-const jar = document.getElementById('jar');
-const message = document.getElementById('message');
+const jar = document.getElementById("jar");
+const scroll = document.getElementById("scroll");
+const fortune = document.getElementById("fortune");
+const again = document.getElementById("again");
 
-jar.addEventListener('click', () => {
-  const random =
-    messages[Math.floor(Math.random() * messages.length)];
+function revealFortune() {
 
-  message.style.opacity = 0;
+    scroll.classList.remove("show");
 
-  setTimeout(() => {
-    message.textContent = random;
-    message.style.opacity = 1;
-  }, 150);
+    jar.classList.add("shake");
 
-  jar.animate(
-    [
-      { transform: 'rotate(0deg)' },
-      { transform: 'rotate(-10deg)' },
-      { transform: 'rotate(10deg)' },
-      { transform: 'rotate(0deg)' }
-    ],
-    {
-      duration: 400
-    }
-  );
-});
+    setTimeout(() => {
+        jar.classList.remove("shake");
+
+        const random =
+            fortunes[Math.floor(Math.random() * fortunes.length)];
+
+        fortune.innerHTML = `
+            <div style="font-size:.9rem;margin-bottom:10px;">
+                🐝 Bee Wisdom
+            </div>
+            <div>${random}</div>
+        `;
+
+        scroll.classList.add("show");
+        again.style.display = "inline-block";
+
+    }, 600);
+}
+
+jar.addEventListener("click", revealFortune);
+again.addEventListener("click", revealFortune);
 </script>
 
 </body>
