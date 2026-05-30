@@ -32,7 +32,9 @@
         <li><a href="about">AboutMe!</a></li>
         <li><a href="projects">My Work</a></li>
         <li><a href="contact">Contact</a></li>
+        <li><a href="bee-wisdom/">BeeWisdom</a></li>
         <li><a href="flowchart/">Flowchart Tool</a></li>
+        
       </ul>
     </nav>
   </div>
@@ -143,6 +145,17 @@
     </div>
   </section>
 
+  <section class="section">
+    <div class="container">
+      <h2>Flowchart Tool</h2>
+      <p>Type a simple flow like <code>a to b to c</code> and click Render. A flowchart will be generated below.</p>
+      <textarea id="flowInput" rows="3" style="width:100%;max-width:600px;font-family:monospace;padding:10px;border-radius:8px;border:1px solid #eaeaea;resize:vertical;" placeholder="a to b to c" autofocus></textarea>
+      <br>
+      <button id="renderFlow" style="margin-top:10px;padding:8px 18px;border-radius:8px;font-weight:600;">Render Flowchart</button>
+      <div id="flowDiagram" style="margin-top:24px;"></div>
+    </div>
+  </section>
+
 </main>
 
 <footer>
@@ -195,3 +208,4 @@ if(flowBtn && flowInput && flowDiv) {
 
 </body>
 </html>
+
