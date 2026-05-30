@@ -11,6 +11,16 @@
   --shadow: 0 8px 28px rgba(0,0,0,0.08);
 }
 
+/* DARK MODE SUPPORT */
+:root {
+  --bg-dark: #181a1b;
+  --text-dark: #f1f1f1;
+  --muted-dark: #b0b0b0;
+  --accent-dark: #ffe066;
+  --border-dark: #23272a;
+  --link-dark: #4dc9b0;
+}
+
 *{
   box-sizing:border-box;
 }
@@ -331,6 +341,71 @@ footer{
   max-width: 450px;
   width: 100%;
 }
+
+/* DARK MODE STYLES */
+body.dark-mode, html.dark-mode {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode header,
+html.dark-mode header {
+  background: rgba(24,26,27,0.95);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+body.dark-mode .card,
+html.dark-mode .card {
+  background: #23272a;
+  color: var(--text-dark);
+  border-color: var(--border-dark);
+}
+
+body.dark-mode .tag,
+html.dark-mode .tag {
+  background: #23272a;
+  color: var(--accent-dark);
+  border-color: var(--border-dark);
+}
+
+body.dark-mode .subtitle,
+html.dark-mode .subtitle {
+  background: rgba(255,255,255,0.08);
+  color: #ffe066 !important;
+}
+
+body.dark-mode nav a.active,
+html.dark-mode nav a.active {
+  color: var(--accent-dark) !important;
+}
+
+body.dark-mode nav a:hover,
+html.dark-mode nav a:hover {
+  color: var(--accent-dark) !important;
+}
+
+body.dark-mode .footer-inner,
+html.dark-mode .footer-inner {
+  background: #181a1b;
+  color: var(--muted-dark);
+}
+
+body.dark-mode .small,
+html.dark-mode .small {
+  color: var(--muted-dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+  body, html {
+    background: var(--bg-dark);
+    color: var(--text-dark);
+  }
+}
+
 /* RESPONSIVE */
 @media (max-width:900px){
   .hero-grid{
