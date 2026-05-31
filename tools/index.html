@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Diagram Tools • Beepad</title>
+  <meta name="description" content="Create and render Mermaid diagrams and flowcharts online.">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/assets/favicon.png">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <span class="logo">🐝</span>
+      <a href="/">Beepad</a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/projects/">My Work</a></li>
+        <li><a href="/contact/">Contact</a></li>
+        <li><a class="active" href="/tools/">Diagram Tools</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main class="section">
+  <div class="container">
+    <h1>Diagram Tools</h1>
+    <div class="grid-2">
+      <!-- Mermaid Tool -->
+      <div class="card">
+        <h2>Mermaid Diagram Tool</h2>
+        <p>Enter <a href="https://mermaid.js.org/intro/" target="_blank">Mermaid code</a> and click Render to see your diagram.</p>
+        <textarea id="mermaidInput" rows="5" style="width:100%;font-family:monospace;padding:10px;border-radius:8px;border:1px solid #eaeaea;resize:vertical;" placeholder="graph TD\n  A[Start] --> B[Next]"></textarea>
+        <br>
+        <button id="renderMermaid" style="margin-top:10px;padding:8px 18px;border-radius:8px;font-weight:600;">Render Mermaid</button>
+        <div id="mermaidDiagram" style="margin-top:24px;"></div>
+      </div>
+      <!-- Flowchart Tool -->
+      <div class="card">
+        <h2>Flowchart Tool</h2>
+        <p>Enter <a href="https://mermaid.js.org/syntax/flowchart.html" target="_blank">Mermaid flowchart code</a> and click Render to see your flowchart.</p>
+        <textarea id="flowInput" rows="5" style="width:100%;font-family:monospace;padding:10px;border-radius:8px;border:1px solid #eaeaea;resize:vertical;" placeholder="flowchart TD\n  A[Start] --> B{Is it sunny?}\n  B -- Yes --> C[Go outside]\n  B -- No --> D[Stay inside]"></textarea>
+        <br>
+        <button id="renderFlow" style="margin-top:10px;padding:8px 18px;border-radius:8px;font-weight:600;">Render Flowchart</button>
+        <div id="flowDiagram" style="margin-top:24px;"></div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="container footer-inner">
+    <div class="small">© 2026 Beepad</div>
+    <div class="footer-links">
+      <a href="/about/">About</a>
+      <a href="/projects/">My Work</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy</a>
+    </div>
+  </div>
+</footer>
+<script>
+// Mermaid Tool
+const mermaidBtn = document.getElementById('renderMermaid');
+const mermaidInput = document.getElementById('mermaidInput');
+const mermaidDiv = document.getElementById('mermaidDiagram');
+if(mermaidBtn && mermaidInput && mermaidDiv) {
+  mermaidBtn.onclick = async () => {
+    const code = mermaidInput.value.trim();
+    if (!code) {
+      mermaidDiv.innerHTML = '<div class="small">Please enter Mermaid code.</div>';
+      return;
+    }
+    mermaidDiv.innerHTML = '<div class="small">Rendering...</div>';
+    try {
+      const { render } = await import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs');
+      const { svg } = await render('mermaid-diagram', code);
+      mermaidDiv.innerHTML = svg;
+    } catch (e) {
+      mermaidDiv.innerHTML = '<div class="small" style="color:red;">Error: ' + e.message + '</div>';
+    }
+  };
+}
+// Flowchart Tool
+const flowBtn = document.getElementById('renderFlow');
+const flowInput = document.getElementById('flowInput');
+const flowDiv = document.getElementById('flowDiagram');
+if(flowBtn && flowInput && flowDiv) {
+  flowBtn.onclick = async () => {
+    const code = flowInput.value.trim();
+    if (!code) {
+      flowDiv.innerHTML = '<div class="small">Please enter flowchart code.</div>';
+      return;
+    }
+    flowDiv.innerHTML = '<div class="small">Rendering...</div>';
+    try {
+      const { render } = await import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs');
+      const { svg } = await render('flowchart-diagram', code);
+      flowDiv.innerHTML = svg;
+    } catch (e) {
+      flowDiv.innerHTML = '<div class="small" style="color:red;">Error: ' + e.message + '</div>';
+    }
+  };
+}
+</script>
+</body>
+</html>

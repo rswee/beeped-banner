@@ -32,6 +32,8 @@
         <li><a href="about">AboutMe!</a></li>
         <li><a href="projects">My Work</a></li>
         <li><a href="contact">Contact</a></li>
+        <li><a href="/flowchart/">Flowchart Tool</a></li>
+        
       </ul>
     </nav>
   </div>
@@ -68,6 +70,69 @@
 
     </div>
   </section>
+  
+   <!-- BeeWisdom Fortune Jar Start -->
+  <section class="section" id="beewisdom-section">
+    <div class="container center-single">
+      <div class="card" style="max-width:420px;text-align:center;box-shadow:0 8px 28px rgba(244,196,48,0.12);">
+        <img src="assets/jar.png" alt="Honey jar" style="width:90px;height:90px;object-fit:cover;border-radius:50%;margin:0 auto 16px;box-shadow:0 2px 12px #ffe08655;">
+        <h2 style="margin-bottom:10px">BeeWisdom</h2>
+        <div id="bee-wisdom-jar" class="bee-wisdom-jar">
+          <div id="bee-wisdom-fortune" class="bee-wisdom-fortune" style="min-height:40px;margin-bottom:10px;"></div>
+          <button id="bee-wisdom-btn" class="btn btn-primary" style="margin-bottom:8px;">Get BeeWisdom 🍯</button>
+          <button id="bee-wisdom-share" class="btn" style="display:none">Share</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    const fortunes = [
+      "Small steps every day build big hives.",
+      "Stay curious, keep buzzing.",
+      "Mistakes are pollen for growth.",
+      "Share your honey, help the hive.",
+      "Rest is part of the flight.",
+      "You are enough, bee-lieve it!",
+      "Busy is good, but balance is better.",
+      "Every flower has its season.",
+      "Kindness is the sweetest nectar.",
+      "Bee present, bee kind, bee you."
+    ];
+    const colors = ["#FFF9C4", "#E1F5FE", "#F8BBD0", "#C8E6C9", "#FFECB3", "#D1C4E9", "#FFCDD2", "#B2EBF2", "#F0F4C3", "#FFE0B2"];
+    const btn = document.getElementById('bee-wisdom-btn');
+    const fortuneDiv = document.getElementById('bee-wisdom-fortune');
+    const shareBtn = document.getElementById('bee-wisdom-share');
+    function slowReveal(text, color) {
+      fortuneDiv.innerHTML = '';
+      fortuneDiv.style.background = color;
+      let i = 0;
+      function type() {
+        if (i < text.length) {
+          fortuneDiv.innerHTML += text.charAt(i);
+          i++;
+          setTimeout(type, 40);
+        }
+      }
+      type();
+    }
+    btn.onclick = function() {
+      const idx = Math.floor(Math.random() * fortunes.length);
+      slowReveal(fortunes[idx], colors[idx]);
+      shareBtn.style.display = 'inline-block';
+      shareBtn.innerText = 'Share';
+      shareBtn.onclick = function() {
+        if (navigator.share) {
+          navigator.share({ text: fortunes[idx] });
+        } else {
+          navigator.clipboard.writeText(fortunes[idx]);
+          shareBtn.innerText = 'Copied!';
+          setTimeout(() => shareBtn.innerText = 'Share', 1200);
+        }
+      };
+    };
+  </script>
+  <!-- BeeWisdom Fortune Jar End -->
+</main>
 
   <section class="section">
     <div class="container">
@@ -130,19 +195,16 @@
   <section class="section">
     <div class="container">
       <h2>Featured</h2>
-
-<div class="center-single">
-  <div class="card">
-    <img src="assets/book.jpg" alt="Project cards" style="border-radius:10px;margin-bottom:12px">
-    <h3 style="margin:8px 0">Explore My Work</h3>
-    <p class="small">Subdomains grouped by topic :: DevOps, AWS, Kubernetes, and more.</p>
-    <p><a href="projects">See projects →</a></p>
-  </div>
-</div>
+      <div class="center-single">
+        <div class="card">
+          <img src="assets/book.jpg" alt="Project cards" style="border-radius:10px;margin-bottom:12px">
+          <h3 style="margin:8px 0">Explore My Work</h3>
+          <p class="small">Subdomains grouped by topic :: DevOps, AWS, Kubernetes, and more.</p>
+          <p><a href="projects">See projects →</a></p>
+        </div>
+      </div>
     </div>
   </section>
-
-</main>
 
 <footer>
   <div class="container footer-inner">
@@ -152,9 +214,11 @@
       <a href="projects">My Work</a>
       <a href="contact">Contact</a>
       <a href="privacy">Privacy</a>
+      <a href="tool">Flowchart Tool</a>
     </div>
   </div>
 </footer>
 
 </body>
 </html>
+

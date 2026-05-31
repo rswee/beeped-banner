@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Wisdom Jar</title>
+<link rel="icon" href="/assets/favicon.png">
+<style>
+body{
+    font-family:system-ui,sans-serif;
+    text-align:center;
+    background:#fffdf7;
+    padding:40px 20px;
+}
+
+.jar{
+    font-size:120px;
+    cursor:pointer;
+    user-select:none;
+}
+
+.shake{
+    animation:shake .5s;
+}
+
+@keyframes shake{
+    0%{transform:rotate(0deg);}
+    25%{transform:rotate(-8deg);}
+    50%{transform:rotate(8deg);}
+    75%{transform:rotate(-8deg);}
+    100%{transform:rotate(0deg);}
+}
+
+.scroll{
+    width:320px;
+    max-width:95vw;
+    margin:0 auto;
+    background:white;
+    border-radius:12px;
+    box-shadow:0 6px 18px rgba(0,0,0,.1);
+    padding:20px;
+    margin-top:20px;
+    opacity:0;
+    transform:translateY(-20px);
+    transition:all .5s ease;
+}
+
+.scroll.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.fortune{
+    font-size:1.15rem;
+    line-height:1.6;
+    word-break:break-word;
+    background: linear-gradient(90deg, #fffbe6 60%, #ffe066 100%);
+    border-radius: 8px;
+    padding: 16px 10px;
+    margin-top: 8px;
+    box-shadow: 0 2px 10px rgba(255,224,102,0.08);
+    color: #6d5600;
+    transition: background 0.5s;
+}
+
+button{
+    margin-top:20px;
+    padding:10px 18px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+    font-size:1rem;
+}
+
+#share {
+    background: #ffe066;
+    color: #333;
+    margin-left: 10px;
+    display: none;
+}
+
+@media (max-width: 500px) {
+  .jar {
+    font-size: 80px;
+  }
+  .scroll {
+    width: 98vw;
+    padding: 12px;
+  }
+  button {
+    width: 100%;
+    margin-top: 14px;
+    font-size: 1rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<h1>🍯 Wisdom Jar</h1>
+<p>Tap the jar to reveal your fortune.</p>
+
+<div class="jar" id="jar">🍯</div>
+
+<div class="scroll" id="scroll">
+    <div class="fortune" id="fortune"></div>
+</div>
+
+<div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;max-width:340px;margin:0 auto;">
+  <button id="again" style="display:none;">
+    ✨ Another Fortune
+  </button>
+  <button id="share" style="display:none;">
+    📤 Share
+  </button>
+</div>
+
+<script>
+const fortunes = [
+    "Progress beats perfection.",
+    "Start before you're ready.",
+    "Action creates clarity.",
+    "Small steps compound into big results.",
+    "Done is better than perfect.",
+    "Future you will thank present you.",
+    "Consistency beats intensity.",
+    "Capture ideas before they disappear.",
+    "Your habits write your future.",
+    "Learn publicly.",
+    "Keep going. You're closer than you think.",
+    "The perfect time rarely arrives.",
+    "A tiny improvement today compounds tomorrow.",
+    "Curiosity is a superpower.",
+    "Write it down before it vanishes."
+];
+
+const jar = document.getElementById("jar");
+const scroll = document.getElementById("scroll");
+const fortune = document.getElementById("fortune");
+const again = document.getElementById("again");
+const share = document.getElementById("share");
+let lastFortune = "";
+
+function revealFortune() {
+    scroll.classList.remove("show");
+    jar.classList.add("shake");
+    setTimeout(() => {
+        jar.classList.remove("shake");
+        const random = fortunes[Math.floor(Math.random() * fortunes.length)];
+        lastFortune = random;
+        // Animate the fortune text
+        const header = `<div style="font-size:.9rem;margin-bottom:10px;">🐝 Bee Wisdom</div>`;
+        let i = 0;
+        fortune.innerHTML = header + '<div id="fortuneText"></div>';
+        const fortuneTextDiv = document.getElementById('fortuneText');
+        function typeChar() {
+          if (i <= random.length) {
+            fortuneTextDiv.textContent = random.slice(0, i);
+            i++;
+            setTimeout(typeChar, 28); // adjust speed here
+          }
+        }
+        typeChar();
+        scroll.classList.add("show");
+        again.style.display = "inline-block";
+        if (navigator.share) {
+          share.style.display = "inline-block";
+        }
+    }, 600);
+}
+
+jar.addEventListener("click", revealFortune);
+again.addEventListener("click", revealFortune);
+
+share.addEventListener("click", function() {
+  if (!lastFortune) return;
+  if (navigator.share) {
+    navigator.share({
+      title: 'Bee Wisdom',
+      text: lastFortune + ' 🐝',
+      url: window.location.href
+    });
+  } else {
+    // fallback: copy to clipboard
+    navigator.clipboard.writeText(lastFortune);
+    share.textContent = 'Copied!';
+    setTimeout(() => share.textContent = '📤 Share', 1200);
+  }
+});
+</script>
+
+</body>
+</html>

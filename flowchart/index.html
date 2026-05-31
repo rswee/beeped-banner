@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Flowchart Tool • Beepad</title>
+  <meta name="description" content="Create simple flowcharts from text input.">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/assets/favicon.png">
+  <meta property="og:title" content="Flowchart Tool • Beepad">
+  <meta property="og:description" content="Create simple flowcharts from text input.">
+  <meta property="og:image" content="https://beepad.site/assets/hero.jpg">
+  <meta name="theme-color" content="#006D77">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <span class="logo">🐝</span>
+      <a href="/" aria-label="Beepad Home">Beepad</a>
+    </div>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about/">AboutMe!</a></li>
+        <li><a href="/projects/">My Work</a></li>
+        <li><a href="/contact/">Contact</a></li>
+        <li><a class="active" href="/flowchart/">Flowchart Tool</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main>
+  <section class="hero" style="padding:40px 0 22px;">
+    <div class="container">
+      <h1>Flowchart Tool <span aria-label="Honey Jar" title="Honey Jar" style="font-size:1.2em;">🍯</span></h1>
+      <p class="subtitle">Type a simple flow like <code>a to b to c</code> and click Render. A flowchart will be generated below.</p> 
+      <p style="color: green;">
+       Example: Green to Blue to Yellow, Green to Blue, Green to Yellow
+      </p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container center-single">
+      <div class="card" style="max-width:520px;text-align:center;">
+        <h2 style="margin-bottom:18px;">Create Your Flowchart</h2>
+        <textarea id="flowInput" rows="3" style="width:100%;max-width:420px;font-family:monospace;padding:10px;border-radius:8px;border:1px solid #eaeaea;resize:vertical;margin-bottom:12px;" placeholder="a to b to c" autofocus></textarea>
+        <br>
+        <button id="renderFlow" class="btn btn-primary" style="margin-bottom:10px;">Render Flowchart</button>
+        <div id="flowDiagram" style="margin-top:24px;"></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="container footer-inner">
+    <div class="small">© 2026 Beepad</div>
+    <div class="footer-links">
+      <a href="/about/">AboutMe!</a>
+      <a href="/projects/">My Work</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/flowchart/">Flowchart Tool</a>
+    </div>
+  </div>
+</footer>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+mermaid.initialize({ startOnLoad: false });
+const flowBtn = document.getElementById('renderFlow');
+const flowInput = document.getElementById('flowInput');
+const flowDiv = document.getElementById('flowDiagram');
+if(flowBtn && flowInput && flowDiv) {
+  flowBtn.onclick = async () => {
+    const raw = flowInput.value.trim();
+    if (!raw) {
+      flowDiv.innerHTML = '<div class="small">Please enter a flow (e.g., a to b to c).</div>';
+      return;
+    }
+    const nodes = raw.split(/\s+to\s+/i).map(s => s.trim()).filter(Boolean);
+    if (nodes.length < 2) {
+      flowDiv.innerHTML = '<div class="small">Enter at least two nodes (e.g., a to b).</div>';
+      return;
+    }
+    let mermaidCode = 'flowchart TD\n';
+    for (let i = 0; i < nodes.length - 1; i++) {
+      mermaidCode += `  ${nodes[i]} --> ${nodes[i+1]}\n`;
+    }
+    flowDiv.innerHTML = '<div class="small">Rendering...</div>';
+    try {
+      const { svg } = await mermaid.render('flowchart-diagram', mermaidCode);
+      flowDiv.innerHTML = svg;
+    } catch (e) {
+      flowDiv.innerHTML = '<div class="small" style="color:red;">Error: ' + e.message + '</div>';
+    }
+  };
+}
+</script>
+</body>
+</html>

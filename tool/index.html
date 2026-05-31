@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AWS Learning Path • Beepad</title>
+  <meta name="description" content="AWS learning path, notes, and resources.">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/assets/favicon.png">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <span class="logo">🐝</span>
+      <a href="/">Beepad</a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/projects/">My Work</a></li>
+        <li><a href="/contact/">Contact</a></li>
+        <li><a href="/flowchart/">Flowchart Tool</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<section class="hero" style="padding:40px 0 22px;">
+  <div class="container">
+    <h1>AWS Learning Path</h1>
+    <p class="subtitle">Start here for AWS basics, notes, and hands-on guides.</p>
+  </div>
+</section>
+<main class="section">
+  <div class="container">
+    <h2>Mermaid & Flowchart Plugins</h2>
+    <p>Enter <a href="https://mermaid.js.org/syntax/flowchart.html" target="_blank">Mermaid diagram code</a> below and click Render. Both a Mermaid diagram and a flowchart will be generated if possible.</p>
+    <textarea id="diagramInput" rows="5" style="width:100%;max-width:600px;font-family:monospace;padding:10px;border-radius:8px;border:1px solid #eaeaea;resize:vertical;" placeholder="flowchart TD\n  A[Start] --> B{Is it sunny?}\n  B -- Yes --> C[Go outside]\n  B -- No --> D[Stay inside]" autofocus></textarea>
+    <br>
+    <button id="renderDiagrams" style="margin-top:10px;padding:8px 18px;border-radius:8px;font-weight:600;">Render Diagrams</button>
+    <div id="mermaidPlugin" style="margin-top:24px;"></div>
+    <div id="flowchartPlugin" style="margin-top:24px;"></div>
+    <h2>Coming Soon</h2>
+    <p>Notes, guides, and diagrams for AWS will appear here.</p>
+  </div>
+</main>
+<footer>
+  <div class="container footer-inner">
+    <div class="small">© 2026 Beepad</div>
+    <div class="footer-links">
+      <a href="/about/">About</a>
+      <a href="/projects/">My Work</a>
+      <a href="/contact/">Contact</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/flowchart/">Flowchart Tool</a>
+    </div>
+  </div>
+</footer>
+<script>
+const renderBtn = document.getElementById('renderDiagrams');
+const input = document.getElementById('diagramInput');
+const mermaidDiv = document.getElementById('mermaidPlugin');
+const flowchartDiv = document.getElementById('flowchartPlugin');
+if(renderBtn && input && mermaidDiv && flowchartDiv) {
+  renderBtn.onclick = async () => {
+    const code = input.value.trim();
+    if (!code) {
+      mermaidDiv.innerHTML = '<div class="small">Please enter Mermaid code.</div>';
+      flowchartDiv.innerHTML = '';
+      return;
+    }
+    mermaidDiv.innerHTML = '<div class="small">Rendering Mermaid diagram...</div>';
+    flowchartDiv.innerHTML = '<div class="small">Rendering flowchart...</div>';
+    try {
+      const { render } = await import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs');
+      // Render as Mermaid diagram
+      const { svg: mermaidSvg } = await render('mermaid-diagram', code);
+      mermaidDiv.innerHTML = '<h3>Mermaid Diagram</h3>' + mermaidSvg;
+      // If the code is a flowchart, render again as a flowchart
+      if (code.startsWith('flowchart')) {
+        const { svg: flowchartSvg } = await render('flowchart-diagram', code);
+        flowchartDiv.innerHTML = '<h3>Flowchart</h3>' + flowchartSvg;
+      } else {
+        flowchartDiv.innerHTML = '<div class="small">Input is not a flowchart. Only Mermaid diagram rendered.</div>';
+      }
+    } catch (e) {
+      mermaidDiv.innerHTML = '<div class="small" style="color:red;">Error rendering diagram: ' + e.message + '</div>';
+      flowchartDiv.innerHTML = '';
+    }
+  };
+}
+</script>
+</body>
+</html>
