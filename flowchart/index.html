@@ -31,15 +31,24 @@
     </nav>
   </div>
 </header>
-<main class="section" id="flowchart-tool">
-  <div class="container">
-    <h2>Flowchart Tool</h2>
-    <p>Type a simple flow like <code>a to b to c</code> and click Render. A flowchart will be generated below.</p>
-    <textarea id="flowInput" rows="3" style="width:100%;max-width:600px;font-family:monospace;padding:10px;border-radius:8px;border:1px solid #eaeaea;resize:vertical;" placeholder="a to b to c" autofocus></textarea>
-    <br>
-    <button id="renderFlow" style="margin-top:10px;padding:8px 18px;border-radius:8px;font-weight:600;">Render Flowchart</button>
-    <div id="flowDiagram" style="margin-top:24px;"></div>
-  </div>
+<main>
+  <section class="hero" style="padding:40px 0 22px;">
+    <div class="container">
+      <h1>Flowchart Tool <span aria-label="Honey Jar" title="Honey Jar" style="font-size:1.2em;">🍯</span></h1>
+      <p class="subtitle">Type a simple flow like <code>a to b to c</code> and click Render. A flowchart will be generated below.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container center-single">
+      <div class="card" style="max-width:520px;text-align:center;">
+        <h2 style="margin-bottom:18px;">Create Your Flowchart</h2>
+        <textarea id="flowInput" rows="3" style="width:100%;max-width:420px;font-family:monospace;padding:10px;border-radius:8px;border:1px solid #eaeaea;resize:vertical;margin-bottom:12px;" placeholder="a to b to c" autofocus></textarea>
+        <br>
+        <button id="renderFlow" class="btn btn-primary" style="margin-bottom:10px;">Render Flowchart</button>
+        <div id="flowDiagram" style="margin-top:24px;"></div>
+      </div>
+    </div>
+  </section>
 </main>
 <footer>
   <div class="container footer-inner">
