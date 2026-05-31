@@ -141,15 +141,21 @@ function revealFortune() {
         jar.classList.remove("shake");
         const random = fortunes[Math.floor(Math.random() * fortunes.length)];
         lastFortune = random;
-        fortune.innerHTML = `
-            <div style="font-size:.9rem;margin-bottom:10px;">
-                🐝 Bee Wisdom
-            </div>
-            <div>${random}</div>
-        `;
+        // Animate the fortune text
+        const header = `<div style="font-size:.9rem;margin-bottom:10px;">🐝 Bee Wisdom</div>`;
+        let i = 0;
+        fortune.innerHTML = header + '<div id="fortuneText"></div>';
+        const fortuneTextDiv = document.getElementById('fortuneText');
+        function typeChar() {
+          if (i <= random.length) {
+            fortuneTextDiv.textContent = random.slice(0, i);
+            i++;
+            setTimeout(typeChar, 28); // adjust speed here
+          }
+        }
+        typeChar();
         scroll.classList.add("show");
         again.style.display = "inline-block";
-        // Show share button if supported
         if (navigator.share) {
           share.style.display = "inline-block";
         }
