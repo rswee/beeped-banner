@@ -132,26 +132,28 @@
   <section class="section">
     <div class="container">
       <h2>Featured</h2>
-
-<div class="center-single">
-  <div class="card">
-    <img src="assets/book.jpg" alt="Project cards" style="border-radius:10px;margin-bottom:12px">
-    <h3 style="margin:8px 0">Explore My Work</h3>
-    <p class="small">Subdomains grouped by topic :: DevOps, AWS, Kubernetes, and more.</p>
-    <p><a href="projects">See projects →</a></p>
-  </div>
-</div>
+      <div class="center-single">
+        <div class="card">
+          <img src="assets/book.jpg" alt="Project cards" style="border-radius:10px;margin-bottom:12px">
+          <h3 style="margin:8px 0">Explore My Work</h3>
+          <p class="small">Subdomains grouped by topic :: DevOps, AWS, Kubernetes, and more.</p>
+          <p><a href="projects">See projects →</a></p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- BeeWisdom Fortune Jar Start -->
   <section class="section" id="beewisdom-section">
-    <div class="container">
-      <h2>BeeWisdom</h2>
-      <div id="bee-wisdom-jar" class="bee-wisdom-jar">
-        <div id="bee-wisdom-fortune" class="bee-wisdom-fortune"></div>
-        <button id="bee-wisdom-btn">Get BeeWisdom 🍯</button>
-        <button id="bee-wisdom-share" style="display:none">Share</button>
+    <div class="container center-single">
+      <div class="card" style="max-width:420px;text-align:center;box-shadow:0 8px 28px rgba(244,196,48,0.12);">
+        <img src="assets/hero.jpg" alt="Honey jar" style="width:90px;height:90px;object-fit:cover;border-radius:50%;margin:0 auto 16px;box-shadow:0 2px 12px #ffe08655;">
+        <h2 style="margin-bottom:10px">BeeWisdom</h2>
+        <div id="bee-wisdom-jar" class="bee-wisdom-jar">
+          <div id="bee-wisdom-fortune" class="bee-wisdom-fortune" style="min-height:40px;margin-bottom:10px;"></div>
+          <button id="bee-wisdom-btn" class="btn btn-primary" style="margin-bottom:8px;">Get BeeWisdom 🍯</button>
+          <button id="bee-wisdom-share" class="btn" style="display:none">Share</button>
+        </div>
       </div>
     </div>
   </section>
@@ -189,6 +191,7 @@
       const idx = Math.floor(Math.random() * fortunes.length);
       slowReveal(fortunes[idx], colors[idx]);
       shareBtn.style.display = 'inline-block';
+      shareBtn.innerText = 'Share';
       shareBtn.onclick = function() {
         if (navigator.share) {
           navigator.share({ text: fortunes[idx] });
