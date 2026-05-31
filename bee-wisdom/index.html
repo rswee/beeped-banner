@@ -32,13 +32,13 @@ body{
 
 .scroll{
     width:320px;
+    max-width:95vw;
     margin:0 auto;
     background:white;
     border-radius:12px;
     box-shadow:0 6px 18px rgba(0,0,0,.1);
     padding:20px;
     margin-top:20px;
-
     opacity:0;
     transform:translateY(-20px);
     transition:all .5s ease;
@@ -52,6 +52,7 @@ body{
 .fortune{
     font-size:1.15rem;
     line-height:1.6;
+    word-break:break-word;
 }
 
 button{
@@ -61,6 +62,29 @@ button{
     border-radius:10px;
     cursor:pointer;
     font-weight:600;
+    font-size:1rem;
+}
+
+#share {
+    background: #ffe066;
+    color: #333;
+    margin-left: 10px;
+    display: none;
+}
+
+@media (max-width: 500px) {
+  .jar {
+    font-size: 80px;
+  }
+  .scroll {
+    width: 98vw;
+    padding: 12px;
+  }
+  button {
+    width: 100%;
+    margin-top: 14px;
+    font-size: 1rem;
+  }
 }
 </style>
 </head>
@@ -75,9 +99,14 @@ button{
     <div class="fortune" id="fortune"></div>
 </div>
 
-<button id="again" style="display:none;">
-✨ Another Fortune
-</button>
+<div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;max-width:340px;margin:0 auto;">
+  <button id="again" style="display:none;">
+    ✨ Another Fortune
+  </button>
+  <button id="share" style="display:none;">
+    📤 Share
+  </button>
+</div>
 
 <script>
 const fortunes = [
@@ -102,34 +131,49 @@ const jar = document.getElementById("jar");
 const scroll = document.getElementById("scroll");
 const fortune = document.getElementById("fortune");
 const again = document.getElementById("again");
+const share = document.getElementById("share");
+let lastFortune = "";
 
 function revealFortune() {
-
     scroll.classList.remove("show");
-
     jar.classList.add("shake");
-
     setTimeout(() => {
         jar.classList.remove("shake");
-
-        const random =
-            fortunes[Math.floor(Math.random() * fortunes.length)];
-
+        const random = fortunes[Math.floor(Math.random() * fortunes.length)];
+        lastFortune = random;
         fortune.innerHTML = `
             <div style="font-size:.9rem;margin-bottom:10px;">
                 🐝 Bee Wisdom
             </div>
             <div>${random}</div>
         `;
-
         scroll.classList.add("show");
         again.style.display = "inline-block";
-
+        // Show share button if supported
+        if (navigator.share) {
+          share.style.display = "inline-block";
+        }
     }, 600);
 }
 
 jar.addEventListener("click", revealFortune);
 again.addEventListener("click", revealFortune);
+
+share.addEventListener("click", function() {
+  if (!lastFortune) return;
+  if (navigator.share) {
+    navigator.share({
+      title: 'Bee Wisdom',
+      text: lastFortune + ' 🐝',
+      url: window.location.href
+    });
+  } else {
+    // fallback: copy to clipboard
+    navigator.clipboard.writeText(lastFortune);
+    share.textContent = 'Copied!';
+    setTimeout(() => share.textContent = '📤 Share', 1200);
+  }
+});
 </script>
 
 </body>
